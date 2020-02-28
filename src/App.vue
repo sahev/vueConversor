@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-      <Conversor moedaA="USD" moedaB="BRL"/>
+      <Conversor/>
 
   </div>
             
