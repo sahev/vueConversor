@@ -1,13 +1,16 @@
 <template>
-  <div id="app">
+ <div id="app">
 
       <Conversor moedaA="USD" moedaB="BRL"/>
 
+      
   </div>
             
 </template>
 
 <script>
+
+
 
 import Conversor from "./Conversor.vue"
 export default {

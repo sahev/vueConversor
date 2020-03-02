@@ -2,53 +2,77 @@
 
     <div class="conversor">
 
-        <h2>{{moedaA}} Para {{moedaB}}</h2>
-        <input type ="text" v-model="moedaA_value" v-bind:placeholder="moedaA">
+        <h2>
+            <select v-model="moedaAtype">
+                <option v-for="moeda in moedas" :key="moeda">{{moeda}}</option>
+            </select>
+        </h2>
+        
+        <h2>Para</h2>
+        
+        <h2>
+            <select v-model="moedaBtype">
+                <option v-for="moeda in moedas" :key="moeda">{{moeda}}</option>
+            </select>
+        </h2>
+
+        <input type="text" v-model="moedaA_value">
+
         <input type="button" value="Converter" v-on:click="converter">
-        <h2>R$ {{moedaB_value}}</h2>
+        
+        <h2>R$ {{valor}}</h2>
+
+        
     </div>
 </template>
 
 <script>
+
 export default {
      name: "Conversor",
-     props: ["moedaA","moedaB"],
         data(){
             return{
-                moedaA_value: "",
-                moedaB_value: 0
-            
+                moedaAtype: "",
+                moedaBtype: "",
+                moedaA_value: 0,
+                valor: 0,
+                moedas: ['USD', 'BRL', 'NZD']
             };
+
             
         },
         
 methods: {
+    
     converter(){
-        console.log("converter method "+this.moedaB_value+"");
-        let a = this.moedaA;
-        let b = this.moedaB;
-        let url = "https://api.exchangeratesapi.io/latest?symbols="+a+","+b+"";
 
+        let a = this.moedaAtype;
+        let b = this.moedaBtype;
+        let url = "https://api.exchangeratesapi.io/latest?base="+a+"";
+
+       
         fetch(url)
             .then(res => {
                 return res.json();
         })
         .then(json => {
-            console.log(json);
-            let cotacao = json["rates"].BRL;
-            
-            let cotacaobrl = json["rates"].BRL;
-            let cotacaousd = json["rates"].USD;
+
+            let cotacao = json["rates"].b;
 
             //this.moedaB_value = (cotacao * this.moedaA_value);
-            this.moedaB_value = (cotacao * this.moedaA_value).toFixed(2);
+            this.valor = (cotacao * this.moedaA_value).toFixed(2);
 
-            console.log("cotacao BRL "+cotacaobrl+"; cotacao USD "+cotacaousd+"");
-            console.log("converter method "+this.moedaA_value+" "+this.moedaB_value+"");
+            console.log(json);
+          
+           console.log(a,b,this.moedaA_value,cotacao);
 
         });
-    }
+    },
+    
+
+
 }
+
 };
 
 
