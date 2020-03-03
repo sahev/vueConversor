@@ -12,6 +12,7 @@
 
 
 
+
 import Conversor from "./Conversor.vue"
 export default {
   name: 'App',
