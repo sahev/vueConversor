@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container-title">
+    <div class="app">
       <select id="moedas" v-model="moedaAType">
         <option v-for="moeda in moedas" :key="moeda.id" :value="moeda.name">{{ moeda.name }}</option>
       </select>
