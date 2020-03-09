@@ -18,7 +18,7 @@
 
     <input type="text" v-model="moedaA_value" />
 
-    <input type="button" value="Converter" v-on:click="converter" />
+    <input type="button" value="Converter" v-on:click="converter" @keypress.enter="converter"/>
 
     <h2>$ {{valor}}</h2>
   </div>
